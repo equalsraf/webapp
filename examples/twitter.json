@@ -1,0 +1,6 @@
+{
+	"start_url": "https://www.twitter.com",
+	"allowed_domains": ["twitter.com", "*.twitter.com"],
+	"javascript_enabled": true
+}
+

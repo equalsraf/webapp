@@ -1,0 +1,5 @@
+{
+	"start_url": "https://github.com",
+	"allowed_domains": ["*.github.com", "github.com"],
+	"javascript_enabled": true
+}
