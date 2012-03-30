@@ -4,23 +4,27 @@ applications.
 
 # Build instructions
 
-WebApp requires Qt and QJon to work. To build it use qmake.
+WebApp requires Qt and QJson to work. To build it use qmake.
+For example in \*nix systems with make, you would:
 
+    $ qmake
+    $ make
 
 # How does it work?
 
+Just call
+
     $ webapp <configfile>
 
-# Configuration
-
-Each webapp is described as a JSon config file. Check the examples directory.
+Each webapp is described as a JSon config file. Check the examples directory
+for a few samples.
 
 
 # Features
 
 At this point the following features are supported:
 
-* Restrict view to certain domains, or wildcard domains
+* Restrict view to certain hosts, or wildcard domains
 * Disable Javascript
 
 
