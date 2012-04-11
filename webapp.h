@@ -4,6 +4,7 @@
 #include <QWebView>
 #include <QUrl>
 #include <QRegExp>
+#include "webpage.h"
 
 //
 // TODO
@@ -19,15 +20,18 @@ public:
 
 	void setJavascriptEnabled(bool enabled);
 	void setAllowed(const QList<QRegExp>& allow) { m_allowed = allow; }
+	void setUserAgent(const QString& ua) {m_page->setUserAgent(ua);}
+
 	void load() {load(m_startPage);}
 	void load(const QUrl&);
 	void load(const QNetworkRequest& request, QNetworkAccessManager::Operation operation = QNetworkAccessManager::GetOperation, 
 			const QByteArray & body = QByteArray() );
 
-protected:
-	virtual QWebView* createWindow(QWebPage::WebWindowType) { return 0; }
 	virtual bool isAllowed(const QUrl&);
 	virtual void loadDisallowedUrl(const QUrl&);
+
+protected:
+	virtual QWebView* createWindow(QWebPage::WebWindowType) { return 0; }
 
 protected slots:
 	void linkClicked(const QUrl& );
@@ -37,6 +41,7 @@ protected slots:
 private:
 	QList<QRegExp> m_allowed;
 	QUrl m_startPage;
+	WebPage *m_page;
 };
 
 #endif

@@ -5,11 +5,12 @@
 #include <QDesktopServices>
 #include <QNetworkRequest>
 
-#include "webpage.h"
-
 WebApp::WebApp(const QUrl& start, QWidget *parent)
 :QWebView(parent), m_startPage(start)
 {
+	m_page = new WebPage(this);
+	setPage(m_page);
+
 	QWebSettings *s = settings()->globalSettings();
 
 	s->setAttribute( QWebSettings::DnsPrefetchEnabled, true);
