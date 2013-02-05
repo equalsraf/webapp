@@ -1,5 +1,0 @@
-{
-	"start_url": "https://www.google.com",
-	"allowed_domains": ["google.com", "google.pt", "*.google.com", "*google.pt"],
-	"javascript_enabled": false
-}

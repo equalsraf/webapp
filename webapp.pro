@@ -13,4 +13,3 @@ QT += webkit network
 HEADERS += webapp.h webpage.h
 SOURCES += main.cpp webapp.cpp webpage.cpp
 
-LIBS += -lqjson

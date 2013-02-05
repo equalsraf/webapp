@@ -22,12 +22,11 @@ QString WebPage::userAgentForUrl(const QUrl& url) const
 	return m_userAgent;
 }
 
-
 bool WebPage::acceptNavigationRequest(QWebFrame *frame, const QNetworkRequest &req,
-					QWebPage::NavigationType)
+					QWebPage::NavigationType t)
 {
 	if (m_app->isAllowed(req.url())) {
-		return true;
+		return QWebPage::acceptNavigationRequest(frame, req, t);
 	}
 
 	m_app->loadDisallowedUrl(req.url());

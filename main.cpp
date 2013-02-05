@@ -1,6 +1,5 @@
 #include <QtGui>
 #include "webapp.h"
-#include <qjson/parser.h>
 
 int main(int ac, char **av)
 {
@@ -11,17 +10,8 @@ int main(int ac, char **av)
 		return -1;
 	}
 
-	QFile f(app.arguments()[1]);
-	f.open(QIODevice::ReadOnly);
-
-	QJson::Parser parser;
-	bool ok;
-	QVariantMap settings = parser.parse(f.readAll(), &ok).toMap();
-	f.close();
-	if ( !ok ) {
-		qDebug() << "Unable to parse config file";
-		return -1;
-	}
+	// FIXME: check file
+	QSettings settings(app.arguments()[1], QSettings::IniFormat);
 
 	if ( !settings.contains("start_url") ) {
 		qDebug() << "The config file is missing a start_url option";
@@ -43,9 +33,13 @@ int main(int ac, char **av)
 	QList<QVariant> domains = settings.value("allowed_domains").toList();
 	QList<QRegExp> allowed;
 	foreach(QVariant domain, domains) {
-		allowed << QRegExp(domain.toString(), Qt::CaseInsensitive, QRegExp::Wildcard);
+		allowed << QRegExp(domain.toString().trimmed(), Qt::CaseInsensitive, QRegExp::Wildcard);
 	}
 	wa.setAllowed(allowed);
+
+	if ( settings.contains("icon") ) {
+		wa.setWindowIcon(QIcon(settings.value("icon").toString()));
+	}
 
 	wa.load();
 	wa.show();

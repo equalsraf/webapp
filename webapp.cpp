@@ -78,6 +78,13 @@ void WebApp::load(const QNetworkRequest& request, QNetworkAccessManager::Operati
 void WebApp::loadDisallowedUrl(const QUrl& url)
 {
 	qDebug()  << __func__ << url;
+
+	if ( url.isRelative() ) {
+		return;
+	} else if ( url.scheme() == "about" ) {
+		return;
+	}
+
 	QDesktopServices::openUrl(url);
 }
 
