@@ -24,7 +24,7 @@ int main(int ac, char **av)
 	}
 
 	WebApp wa(QUrl(settings.value("start_url").toString()));
-	wa.setJavascriptEnabled( settings.value("javascript_enabled", true).toBool() );
+	wa.setJavascriptEnabled( settings.value("javascript", true).toBool() );
 
 	if ( settings.contains("user_agent") ) {
 		wa.setUserAgent( settings.value("user_agent").toString() );
