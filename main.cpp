@@ -30,7 +30,14 @@ int main(int ac, char **av)
 		wa.setUserAgent( settings.value("user_agent").toString() );
 	}
 
-	QList<QVariant> domains = settings.value("allowed_domains").toList();
+	QVariant allowed_val = settings.value("allowed_domains");
+	QList<QVariant> domains;
+	if ( allowed_val.type() == QVariant::String ) {
+		domains.append(allowed_val);
+	} else {
+		domains = allowed_val.toList();
+	}
+
 	QList<QRegExp> allowed;
 	foreach(QVariant domain, domains) {
 		allowed << QRegExp(domain.toString().trimmed(), Qt::CaseInsensitive, QRegExp::Wildcard);
