@@ -30,6 +30,9 @@ public:
 	virtual bool isAllowed(const QUrl&);
 	virtual void loadDisallowedUrl(const QUrl&);
 
+protected slots:
+	virtual void mouseOverLink(const QString& link, const QString& title, const QString& text);
+
 protected:
 	virtual QWebView* createWindow(QWebPage::WebWindowType) { return 0; }
 

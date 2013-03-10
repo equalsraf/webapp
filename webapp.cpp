@@ -11,6 +11,9 @@ WebApp::WebApp(const QUrl& start, QWidget *parent)
 	m_page = new WebPage(this);
 	setPage(m_page);
 
+	connect(m_page, SIGNAL(linkHovered(QString, QString, QString)),
+		this, SLOT(mouseOverLink(QString, QString, QString)));
+
 	QWebSettings *s = settings()->globalSettings();
 
 	s->setAttribute( QWebSettings::DnsPrefetchEnabled, true);
@@ -129,3 +132,9 @@ void WebApp::viewLoadFinished(bool ok)
 {
 	qDebug() << __func__ << ok;
 }
+
+void WebApp::mouseOverLink(const QString& link, const QString& title, const QString& text)
+{
+	setToolTip(link);
+}
+
