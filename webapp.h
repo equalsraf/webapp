@@ -41,6 +41,8 @@ protected slots:
 	void viewUrlChanged(const QUrl&);
 	void viewIconChanged();
 	void viewLoadFinished(bool);
+	void restart();
+
 private:
 	QList<QRegExp> m_allowed;
 	QUrl m_startPage;

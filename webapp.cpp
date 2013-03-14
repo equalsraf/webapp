@@ -4,6 +4,7 @@
 #include <QtCore>
 #include <QDesktopServices>
 #include <QNetworkRequest>
+#include <QShortcut>
 
 WebApp::WebApp(const QUrl& start, QWidget *parent)
 :QWebView(parent), m_startPage(start)
@@ -37,6 +38,10 @@ WebApp::WebApp(const QUrl& start, QWidget *parent)
 		}
 	}
 
+	QShortcut *f5 = new QShortcut( QKeySequence::Refresh, this);
+	connect(f5, SIGNAL(activated()), 
+			this, SLOT(restart()));
+
 	connect(this, SIGNAL(titleChanged(QString)),
 			this, SLOT(setWindowTitle(QString)));
 	connect(this, SIGNAL(iconChanged()),
@@ -52,6 +57,11 @@ WebApp::WebApp(const QUrl& start, QWidget *parent)
 
 	connect(this, SIGNAL(urlChanged(QUrl)),
 			this, SLOT(viewUrlChanged(QUrl)));
+}
+
+void WebApp::restart()
+{
+	load(m_startPage);
 }
 
 void WebApp::setJavascriptEnabled(bool enabled)
