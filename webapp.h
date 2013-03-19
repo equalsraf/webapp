@@ -5,6 +5,7 @@
 #include <QUrl>
 #include <QRegExp>
 #include "webpage.h"
+#include "networkaccessmanager.h"
 
 //
 // TODO
@@ -29,6 +30,8 @@ public:
 
 	virtual bool isAllowed(const QUrl&);
 	virtual void loadDisallowedUrl(const QUrl&);
+	virtual QNetworkAccessManager* networkAccessManager() { return &nam;};
+
 
 protected slots:
 	virtual void mouseOverLink(const QString& link, const QString& title, const QString& text);
@@ -42,11 +45,14 @@ protected slots:
 	void viewIconChanged();
 	void viewLoadFinished(bool);
 	void restart();
+	void toggleFullscreen();
 
 private:
 	QList<QRegExp> m_allowed;
 	QUrl m_startPage;
+	QRegExp redirector;
 	WebPage *m_page;
+	NetworkAccessManager nam;
 };
 
 #endif

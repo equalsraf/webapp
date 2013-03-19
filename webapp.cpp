@@ -7,8 +7,9 @@
 #include <QShortcut>
 
 WebApp::WebApp(const QUrl& start, QWidget *parent)
-:QWebView(parent), m_startPage(start)
+:QWebView(parent), m_startPage(start), nam(this)
 {
+
 	m_page = new WebPage(this);
 	setPage(m_page);
 
@@ -19,6 +20,7 @@ WebApp::WebApp(const QUrl& start, QWidget *parent)
 
 	s->setAttribute( QWebSettings::DnsPrefetchEnabled, true);
 	s->setAttribute( QWebSettings::PrivateBrowsingEnabled, true);
+	s->setAttribute( QWebSettings::DeveloperExtrasEnabled, true);
 
 	QList<QWebPage::WebAction> actions;
 	actions << QWebPage::OpenLinkInNewWindow
@@ -41,6 +43,11 @@ WebApp::WebApp(const QUrl& start, QWidget *parent)
 	QShortcut *f5 = new QShortcut( QKeySequence::Refresh, this);
 	connect(f5, SIGNAL(activated()), 
 			this, SLOT(restart()));
+	QShortcut *f11 = new QShortcut( Qt::Key_F11, this);
+	connect(f11, SIGNAL(activated()), 
+			this, SLOT(toggleFullscreen()));
+
+
 
 	connect(this, SIGNAL(titleChanged(QString)),
 			this, SLOT(setWindowTitle(QString)));
@@ -147,4 +154,14 @@ void WebApp::mouseOverLink(const QString& link, const QString& title, const QStr
 {
 	setToolTip(link);
 }
+
+void WebApp::toggleFullscreen()
+{
+	if ( isFullScreen() ) {
+		showNormal();
+	} else {
+		showFullScreen();
+	}
+}
+
 

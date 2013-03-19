@@ -10,6 +10,6 @@ INCLUDEPATH += .
 QT += webkit network
 
 # Input
-HEADERS += webapp.h webpage.h
-SOURCES += main.cpp webapp.cpp webpage.cpp
+HEADERS += webapp.h webpage.h cookiejar.h networkaccessmanager.h
+SOURCES += main.cpp webapp.cpp webpage.cpp cookiejar.cpp networkaccessmanager.cpp
 
