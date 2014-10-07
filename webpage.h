@@ -11,6 +11,8 @@ class WebPage: public QWebPage
 public:
 	WebPage(WebApp *app);
 	void setUserAgent(const QString&);
+	virtual bool supportsExtension(Extension extension) const;
+	virtual bool extension(Extension extension, const ExtensionOption *option=0, ExtensionReturn *output=0);
 
 protected:
 	virtual QString userAgentForUrl(const QUrl& url) const;
