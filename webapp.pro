@@ -3,11 +3,11 @@
 ######################################################################
 
 TEMPLATE = app
-TARGET = 
+TARGET = webapp
 DEPENDPATH += .
 INCLUDEPATH += .
 
-QT += webkit network
+QT += webkitwidgets network
 
 # Input
 HEADERS += webapp.h webpage.h cookiejar.h networkaccessmanager.h

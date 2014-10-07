@@ -1,4 +1,5 @@
 #include "cookiejar.h"
+#include <QNetworkCookie>
 
 
 CookieJar::CookieJar(WebApp* app)

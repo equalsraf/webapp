@@ -1,4 +1,6 @@
-#include <QtGui>
+#include <QNetworkProxy>
+#include <QApplication>
+#include <QSettings>
 #include "webapp.h"
 
 int main(int ac, char **av)
